@@ -20,4 +20,9 @@ public class TanzaniteItem extends Item {
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("item.penchant.tanzanite.tooltip").formatted(Formatting.AQUA));
     }
+
+    @Override
+    public boolean hasGlint(ItemStack itemStack) {
+        return true;
+    }
 }
