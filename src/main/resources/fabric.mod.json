@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "henchant",
+  "id": "penchant",
   "version": "${version}",
 
-  "name": "Human Enchant Mod",
-  "description": "Human Enchant Mod",
+  "name": "Player Enchant Mod",
+  "description": "Player Enchant Mod",
   "authors": [
     "hwijini"
   ],
   "contact": {
     "homepage": "instagram: hwijini97",
-    "sources": "https://github.com/hwijini97/human-enchant-mod"
+    "sources": "https://github.com/hwijini97/player-enchant-mod"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/henchant/icon.png",
+  "icon": "assets/penchant/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.henchant.HumanEnchantMod"
+      "com.penchant.PlayerEnchantMod"
     ]
   },
   "mixins": [
-    "henchant.mixins.json"
+    "penchant.mixins.json"
   ],
 
   "depends": {

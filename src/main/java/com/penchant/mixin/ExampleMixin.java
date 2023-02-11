@@ -1,6 +1,6 @@
-package com.henchant.mixin;
+package com.penchant.mixin;
 
-import com.henchant.HumanEnchantMod;
+import com.penchant.PlayerEnchantMod;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ExampleMixin {
 	@Inject(at = @At("HEAD"), method = "init()V")
 	private void init(CallbackInfo info) {
-		HumanEnchantMod.LOGGER.info("This line is printed by an example mod mixin!");
+		PlayerEnchantMod.LOGGER.info("This line is printed by an example mod mixin!");
 	}
 }

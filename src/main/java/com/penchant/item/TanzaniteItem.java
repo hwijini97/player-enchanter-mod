@@ -1,4 +1,4 @@
-package com.henchant.item;
+package com.penchant.item;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
