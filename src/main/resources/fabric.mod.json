@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "henchant",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Human Enchant Mod",
+  "description": "Human Enchant Mod",
   "authors": [
-    "Me!"
+    "hwijini"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "instagram: hwijini97",
+    "sources": "https://github.com/hwijini97/human-enchant-mod"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/henchant/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.henchant.HumanEnchantMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "henchant.mixins.json"
   ],
 
   "depends": {
