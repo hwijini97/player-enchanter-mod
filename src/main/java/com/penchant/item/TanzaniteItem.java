@@ -18,6 +18,6 @@ public class TanzaniteItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("플레이어 강화에 사용됩니다.").formatted(Formatting.AQUA));
+        tooltip.add(Text.translatable("item.penchant.tanzanite.tooltip").formatted(Formatting.AQUA));
     }
 }
