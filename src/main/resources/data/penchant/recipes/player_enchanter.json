@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W ",
+    "IOI",
+    "OOO"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:purple_wool"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "O": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "result": {
+    "item": "penchant:player_enchanter"
+  }
+}

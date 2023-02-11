@@ -1,4 +1,7 @@
 {
   "item.penchant.tanzanite": "탄자나이트",
-  "item.penchant.tanzanite.tooltip": "플레이어 강화에 사용됩니다."
+  "item.penchant.tanzanite.tooltip": "플레이어 강화에 사용됩니다.",
+
+  "block.penchant.player_enchanter": "플레이어 강화대",
+  "block.penchant.player_enchanter.tooltip": "플레이어 강화에 사용됩니다."
 }

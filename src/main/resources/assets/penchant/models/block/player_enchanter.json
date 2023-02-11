@@ -1,0 +1,8 @@
+{
+  "parent": "penchant:block/enchanter",
+  "textures": {
+    "bottom": "penchant:block/player_enchanter_bottom",
+    "top": "penchant:block/player_enchanter_top",
+    "side": "penchant:block/player_enchanter_side"
+  }
+}
