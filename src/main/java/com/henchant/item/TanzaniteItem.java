@@ -1,12 +1,13 @@
 package com.henchant.item;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class TanzaniteItem extends Item {
     public static final String NAME = "tanzanite";
@@ -16,8 +17,7 @@ public class TanzaniteItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        playerEntity.playSound(SoundEvents.BLOCK_WOOL_BREAK, 1.0F, 1.0F);
-        return TypedActionResult.success(playerEntity.getStackInHand(hand));
+    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("플레이어 강화에 사용됩니다.").formatted(Formatting.AQUA));
     }
 }
