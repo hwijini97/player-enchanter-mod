@@ -11,6 +11,7 @@ import net.minecraft.screen.slot.Slot;
 
 public class PlayerEnchanterScreenHandler extends ScreenHandler {
     private final Inventory inventory;
+    public static final int LEVEL_COST = 2;
 
     public PlayerEnchanterScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(9));
@@ -34,7 +35,6 @@ public class PlayerEnchanterScreenHandler extends ScreenHandler {
                 return itemStack.getTranslationKey().equals("item.penchant.tanzanite");
             }
         });
-//        this.addSlot(new Slot(inventory, 0, 98, 35)); // TODO: 이 위치에 버튼 넣어야 함
 
         //The player inventory
         for (m = 0; m < 3; ++m) {

@@ -3,5 +3,7 @@
   "item.penchant.tanzanite.tooltip": "used to enchant player.",
 
   "block.penchant.player_enchanter": "player enchanter",
-  "block.penchant.player_enchanter.tooltip": "used to enchant player."
+  "block.penchant.player_enchanter.tooltip": "used to enchant player.",
+
+  "screen.penchant.player_enchanter.level_cost": "enchantment cost: %1$s"
 }

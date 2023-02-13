@@ -3,5 +3,7 @@
   "item.penchant.tanzanite.tooltip": "플레이어 강화에 사용됩니다.",
 
   "block.penchant.player_enchanter": "플레이어 강화대",
-  "block.penchant.player_enchanter.tooltip": "플레이어 강화에 사용됩니다."
+  "block.penchant.player_enchanter.tooltip": "플레이어 강화에 사용됩니다.",
+
+  "screen.penchant.player_enchanter.level_cost": "강화에 필요한 레벨: %1$s"
 }
