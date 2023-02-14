@@ -35,12 +35,12 @@ public class PlayerEnchantButtonHandler {
 
         PlayerEnchantMod.LOGGER.info("강화 가능!!");
 
-        applyEnchantment();
+        decrementExperienceLevel();
         destroyItem();
-        decrementExperienceLevel(PlayerEnchanterScreenHandler.LEVEL_COST);
+        applyEnchantment();
     }
 
-    private void applyEnchantment() {
+    private void decrementExperienceLevel() {
         // TODO
     }
 
@@ -48,7 +48,7 @@ public class PlayerEnchantButtonHandler {
         // TODO
     }
 
-    private void decrementExperienceLevel(int levelCost) {
+    private void applyEnchantment() {
         // TODO
     }
 
