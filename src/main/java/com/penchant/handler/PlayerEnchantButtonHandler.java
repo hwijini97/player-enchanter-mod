@@ -2,28 +2,22 @@ package com.penchant.handler;
 
 import com.google.common.collect.Lists;
 import com.penchant.PlayerEnchantMod;
-import com.penchant.screen.PlayerEnchanterScreen;
 import com.penchant.screen.PlayerEnchanterScreenHandler;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.ButtonWidget;
+import com.penchant.util.StaticPolicy;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.List;
 import java.util.Objects;
 
 public class PlayerEnchantButtonHandler {
-    private final PlayerEnchanterScreen playerEnchanterScreen;
-    private MinecraftClient client;
 
-    public PlayerEnchantButtonHandler(PlayerEnchanterScreen playerEnchanterScreen, MinecraftClient client) {
-        this.playerEnchanterScreen = playerEnchanterScreen;
-    }
-
-    public void setClient(MinecraftClient client) {
-        this.client = client;
-    }
-
-    public void onClick(ButtonWidget button) {
-        List<String> validationResults = validateAndGetResults();
+    public static void handleEnchantButtonClicked(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
+        List<String> validationResults = validateAndGetResults(player);
 
         if (!validationResults.isEmpty()) {
             for (String result : validationResults) {
@@ -33,46 +27,22 @@ public class PlayerEnchantButtonHandler {
             return;
         }
 
-        PlayerEnchantMod.LOGGER.info("강화 가능!!");
-
-        decrementExperienceLevel();
-        destroyItem();
-        applyEnchantment();
+        destroyItem(player);
+        applyEnchantmentCost(player);
+        applyRandomEnchantment(player);
     }
 
-    private void decrementExperienceLevel() {
-        // TODO
-    }
-
-    private void destroyItem() {
-        // TODO
-    }
-
-    private void applyEnchantment() {
-        // TODO
-    }
-
-    private List<String> validateAndGetResults() {
+    private static List<String> validateAndGetResults(ServerPlayerEntity player) {
         List<String> result = Lists.newArrayList();
 
-        if (this.client == null) {
-            result.add("[PlayerEnchantButtonHandler] this.client is null");
-            return result;
-        }
-
-        if (this.client.player == null) {
-            result.add("[PlayerEnchantButtonHandler] this.client.player is null");
-            return result;
-        }
-
-        int playerExperienceLevel = this.client.player.experienceLevel;
+        int playerExperienceLevel = player.experienceLevel;
 
         if (insufficientExperienceLevel(playerExperienceLevel)) {
             result.add("[PlayerEnchantButtonHandler] 레벨 부족함. 플레이어 레벨: %s, 비용: %s"
-                    .formatted(playerExperienceLevel, PlayerEnchanterScreenHandler.LEVEL_COST));
+                    .formatted(playerExperienceLevel, StaticPolicy.LEVEL_COST));
         }
 
-        String itemOnSlot = getItemOnSlot();
+        String itemOnSlot = getItemOnSlot(player);
 
         if (!Objects.equals(itemOnSlot, "item.penchant.tanzanite")) {
             result.add("[PlayerEnchantButtonHandler] 올려진 아이템이 탄자나이트가 아님. item: %s".formatted(itemOnSlot));
@@ -81,11 +51,23 @@ public class PlayerEnchantButtonHandler {
         return result;
     }
 
-    private String getItemOnSlot() {
-        return this.playerEnchanterScreen.getScreenHandler().slots.get(0).getStack().getItem().getTranslationKey();
+    private static String getItemOnSlot(ServerPlayerEntity player) {
+        return player.currentScreenHandler.slots.get(0).getStack().getItem().getTranslationKey();
     }
 
-    private boolean insufficientExperienceLevel(int playerExperienceLevel) {
-        return playerExperienceLevel < PlayerEnchanterScreenHandler.LEVEL_COST;
+    private static boolean insufficientExperienceLevel(int playerExperienceLevel) {
+        return playerExperienceLevel < StaticPolicy.LEVEL_COST;
+    }
+
+    private static void destroyItem(ServerPlayerEntity player) {
+        ((PlayerEnchanterScreenHandler) player.currentScreenHandler).getInventory().setStack(0, ItemStack.EMPTY);
+    }
+
+    private static void applyEnchantmentCost(ServerPlayerEntity player) {
+        player.applyEnchantmentCosts(player.playerScreenHandler.getSlot(0).getStack(), StaticPolicy.LEVEL_COST);
+    }
+
+    private static void applyRandomEnchantment(ServerPlayerEntity player) {
+        // TODO
     }
 }

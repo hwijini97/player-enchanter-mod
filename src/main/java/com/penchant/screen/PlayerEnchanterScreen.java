@@ -1,7 +1,9 @@
 package com.penchant.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.penchant.handler.PlayerEnchantButtonHandler;
+import com.penchant.util.StaticPolicy;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.render.GameRenderer;
@@ -16,13 +18,12 @@ public class PlayerEnchanterScreen extends HandledScreen<PlayerEnchanterScreenHa
 
     private static final Identifier SCREEN_TEXTURE = new Identifier("penchant", "textures/screen/player_enchanter.png");
     private static final Identifier CHECK_BUTTON_TEXTURE = new Identifier("penchant", "textures/screen/check_button.png");
-    private final PlayerEnchantButtonHandler playerEnchantButtonHandler;
     private final TexturedButtonWidget buttonWidget;
 
     public PlayerEnchanterScreen(PlayerEnchanterScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
-        this.playerEnchantButtonHandler = new PlayerEnchantButtonHandler(this, this.client);
-        this.buttonWidget = new TexturedButtonWidget(221, 71, 20, 18, 0, 0, 19, CHECK_BUTTON_TEXTURE, playerEnchantButtonHandler::onClick);
+        this.buttonWidget = new TexturedButtonWidget(221, 71, 20, 18, 0, 0, 19,
+                CHECK_BUTTON_TEXTURE, button -> ClientPlayNetworking.send(Identifier.of(StaticPolicy.MOD_ID, StaticPolicy.PACKET_NAME), PacketByteBufs.empty()));
     }
 
     @Override
@@ -48,15 +49,14 @@ public class PlayerEnchanterScreen extends HandledScreen<PlayerEnchanterScreenHa
         // Center the title
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
         this.addDrawableChild(buttonWidget);
-        playerEnchantButtonHandler.setClient(this.client);
     }
 
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
         super.drawForeground(matrices, mouseX, mouseY);
-        Text text = Text.translatable("screen.penchant.player_enchanter.level_cost", PlayerEnchanterScreenHandler.LEVEL_COST);
+        Text text = Text.translatable("screen.penchant.player_enchanter.level_cost", StaticPolicy.LEVEL_COST);
 
-        if (this.client.player.experienceLevel >=  PlayerEnchanterScreenHandler.LEVEL_COST) {
+        if (this.client.player.experienceLevel >=  StaticPolicy.LEVEL_COST) {
             this.textRenderer.drawWithShadow(matrices, text, 78, 65, GREEN);
         } else {
             this.textRenderer.drawWithShadow(matrices, text, 78, 65, RED);

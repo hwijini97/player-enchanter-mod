@@ -11,15 +11,18 @@ import net.minecraft.screen.slot.Slot;
 
 public class PlayerEnchanterScreenHandler extends ScreenHandler {
     private final Inventory inventory;
-    public static final int LEVEL_COST = 2;
 
     public PlayerEnchanterScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(9));
+        this(syncId, playerInventory, new SimpleInventory(1));
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
     public PlayerEnchanterScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
         super(PlayerEnchantMod.BOX_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 9);
+        checkSize(inventory, 1);
         this.inventory = inventory;
         //some inventories do custom logic when a player opens it.
         inventory.onOpen(playerInventory.player);
