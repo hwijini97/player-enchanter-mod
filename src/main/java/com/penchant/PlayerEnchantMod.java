@@ -79,7 +79,7 @@ public class PlayerEnchantMod implements ModInitializer {
 	}
 
 	private void applyEnchantments(ServerPlayerEntity player) {
-		Map<PlayerEnchantment, Integer> playerEnchantmentInfo = PlayerEnchantmentFileHandler.getPlayerEnchantmentInfo(player.getName().toString());
+		Map<PlayerEnchantment, Integer> playerEnchantmentInfo = PlayerEnchantmentFileHandler.getPlayerEnchantmentInfo(player.getName().getString());
 
 		if (playerEnchantmentInfo.isEmpty()) {
 			return;
@@ -91,7 +91,7 @@ public class PlayerEnchantMod implements ModInitializer {
 			for (int i = 0; i < entry.getValue(); i++) {
 				entry.getKey().getApplier().accept(new PlayerEnchantmentApplyParam(player, entry.getKey(), entry.getValue(), false));
 			}
-			player.sendMessage(Text.translatable("penchant.enchantment_list_item", entry.getKey().getLabel(), entry.getValue()).formatted(Formatting.AQUA));
+			player.sendMessage(Text.translatable("penchant.enchantment_list_item", entry.getKey().getLabel(), entry.getValue() + 1).formatted(Formatting.AQUA));
 		}
 
 		player.sendMessage(Text.translatable("penchant.blank"));

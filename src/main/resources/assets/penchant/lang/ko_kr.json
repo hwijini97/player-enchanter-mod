@@ -7,10 +7,10 @@
 
   "screen.penchant.player_enchanter.level_cost": "강화에 필요한 레벨: %1$s",
 
-  "penchant.player_enchanted": "%s 플레이어가 %s 능력을 획득하였습니다. 중첩된 횟수: %s",
+  "penchant.player_enchanted": "%s 플레이어가 %s 능력 %s단계를 획득하였습니다.",
   "penchant.no_more_enchantment_available": "모든 인챈트를 부여해서 더이상 인챈트가 불가능합니다.",
 
   "penchant.current_applied_enchantments": "[플레이어 강화] 현재 적용된 강화 목록",
-  "penchant.enchantment_list_item": "- %s (%s 중첩)",
+  "penchant.enchantment_list_item": "- %s (%s단계)",
   "penchant.blank": ""
 }

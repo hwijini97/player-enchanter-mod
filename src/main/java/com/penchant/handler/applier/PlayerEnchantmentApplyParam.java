@@ -6,13 +6,13 @@ import net.minecraft.server.network.ServerPlayerEntity;
 public class PlayerEnchantmentApplyParam {
     private ServerPlayerEntity player;
     private PlayerEnchantment enchantment;
-    private int overlappedCount;
+    private int enchantmentIndex;
     private boolean doLog;
 
-    public PlayerEnchantmentApplyParam(ServerPlayerEntity player, PlayerEnchantment enchantment, int overlappedCount, boolean doLog) {
+    public PlayerEnchantmentApplyParam(ServerPlayerEntity player, PlayerEnchantment enchantment, int enchantmentIndex, boolean doLog) {
         this.player = player;
         this.enchantment = enchantment;
-        this.overlappedCount = overlappedCount;
+        this.enchantmentIndex = enchantmentIndex;
         this.doLog = doLog;
     }
 
@@ -28,7 +28,7 @@ public class PlayerEnchantmentApplyParam {
         return doLog;
     }
 
-    public int getOverlappedCount() {
-        return overlappedCount;
+    public int getEnchantmentIndex() {
+        return enchantmentIndex;
     }
 }

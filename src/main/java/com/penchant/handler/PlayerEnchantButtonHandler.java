@@ -29,7 +29,7 @@ public class PlayerEnchantButtonHandler {
             return;
         }
 
-        if (PlayerEnchantmentApplyHandler.playerEnchantable(player.getName().toString())) {
+        if (PlayerEnchantmentApplyHandler.playerEnchantable(player.getName().getString())) {
             destroyItem(player);
             applyEnchantmentCost(player);
             applyRandomEnchantment(player);

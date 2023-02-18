@@ -39,7 +39,7 @@ public class PlayerEnchantmentFileHandler {
         return playerEnchantmentMap.getPlayerEnchantmentMap().getOrDefault(playerName, Map.of());
     }
 
-    public static void addEnchantment(String playerName, PlayerEnchantment enchantment) {
+    public static void addEnchantment(String playerName, PlayerEnchantment enchantment, int enchantmentLevelIndex) {
         try {
             PlayerEnchantmentMap map = getPlayerEnchantmentMap();
 
@@ -47,11 +47,7 @@ public class PlayerEnchantmentFileHandler {
                 map.getPlayerEnchantmentMap().put(playerName, Maps.newHashMap());
             }
 
-            if (!map.getPlayerEnchantmentMap().get(playerName).containsKey(enchantment)) {
-                map.getPlayerEnchantmentMap().get(playerName).put(enchantment, 1);
-            } else {
-                map.getPlayerEnchantmentMap().get(playerName).put(enchantment, map.getPlayerEnchantmentMap().get(playerName).get(enchantment) + 1);
-            }
+            map.getPlayerEnchantmentMap().get(playerName).put(enchantment, enchantmentLevelIndex);
 
             Writer writer = new FileWriter(FILE_PATH);
             gson.toJson(map, writer);
