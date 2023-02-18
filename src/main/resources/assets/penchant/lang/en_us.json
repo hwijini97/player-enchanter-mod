@@ -5,5 +5,12 @@
   "block.penchant.player_enchanter": "player enchanter",
   "block.penchant.player_enchanter.tooltip": "used to enchant player.",
 
-  "screen.penchant.player_enchanter.level_cost": "enchantment cost: %1$s"
+  "screen.penchant.player_enchanter.level_cost": "enchantment cost: %1$s",
+
+  "penchant.player_enchanted": "%s player has applied %s by player enchantment. overlapped count: %s",
+  "penchant.no_more_enchantment_available": "no more enchantment is available.",
+
+  "penchant.current_applied_enchantments": "[Player Enchantment] current applied enchantment list",
+  "penchant.enchantment_list_item": "- %s (%s overlapped)",
+  "penchant.blank": ""
 }

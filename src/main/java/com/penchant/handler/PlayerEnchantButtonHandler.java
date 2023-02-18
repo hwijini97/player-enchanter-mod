@@ -10,6 +10,8 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.List;
 import java.util.Objects;
@@ -27,9 +29,14 @@ public class PlayerEnchantButtonHandler {
             return;
         }
 
-        destroyItem(player);
-        applyEnchantmentCost(player);
-        applyRandomEnchantment(player);
+        if (PlayerEnchantmentApplyHandler.playerEnchantable(player.getName().toString())) {
+            destroyItem(player);
+            applyEnchantmentCost(player);
+            applyRandomEnchantment(player);
+        } else {
+            player.sendMessage(Text.translatable("penchant.no_more_enchantment_available").formatted(Formatting.DARK_RED));
+            PlayerEnchantMod.LOGGER.info("[PlayerAbilityApplyHandler] playerId: {}, playerName: {}, 더이상 인챈트 불가능함.", player.getId(), player.getName());
+        }
     }
 
     private static List<String> validateAndGetResults(ServerPlayerEntity player) {
@@ -68,6 +75,6 @@ public class PlayerEnchantButtonHandler {
     }
 
     private static void applyRandomEnchantment(ServerPlayerEntity player) {
-        // TODO
+        PlayerEnchantmentApplyHandler.applyRandomEnchantment(player);
     }
 }
