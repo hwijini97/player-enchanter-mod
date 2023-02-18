@@ -59,7 +59,7 @@ public class PlayerEnchantMod implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.add(PLAYER_ENCHANTER_BLOCK));
 
 		Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(StaticPolicy.MOD_ID, PlayerEnchanterBlock.NAME), PLAYER_ENCHANTER_BLOCK_ENTITY);
-		ServerPlayNetworking.registerGlobalReceiver(Identifier.of(StaticPolicy.MOD_ID, StaticPolicy.PACKET_NAME), PlayerEnchantButtonHandler::handleEnchantButtonClicked);
+		ServerPlayNetworking.registerGlobalReceiver(new Identifier(StaticPolicy.MOD_ID, StaticPolicy.PACKET_NAME), PlayerEnchantButtonHandler::handleEnchantButtonClicked);
 
 		ServerWorldEvents.LOAD.register(this::serveLoaded);
 		ServerPlayConnectionEvents.JOIN.register(this::applyEnchantments);
