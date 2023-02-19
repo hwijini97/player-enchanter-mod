@@ -93,7 +93,5 @@ public class PlayerEnchantMod implements ModInitializer {
 			}
 			player.sendMessage(Text.translatable("penchant.enchantment_list_item", entry.getKey().getLabel(), entry.getValue() + 1).formatted(Formatting.AQUA));
 		}
-
-		player.sendMessage(Text.translatable("penchant.blank"));
 	}
 }

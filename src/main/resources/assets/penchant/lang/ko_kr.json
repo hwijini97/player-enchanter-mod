@@ -11,6 +11,5 @@
   "penchant.no_more_enchantment_available": "모든 인챈트를 부여해서 더이상 인챈트가 불가능합니다.",
 
   "penchant.current_applied_enchantments": "[플레이어 강화] 현재 적용된 강화 목록",
-  "penchant.enchantment_list_item": "- %s (%s단계)",
-  "penchant.blank": ""
+  "penchant.enchantment_list_item": "- %s (%s단계)"
 }

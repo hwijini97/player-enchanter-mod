@@ -5,7 +5,6 @@ import com.penchant.util.StaticPolicy;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
@@ -18,11 +17,11 @@ public class PlayerEnchanterScreen extends HandledScreen<PlayerEnchanterScreenHa
 
     private static final Identifier SCREEN_TEXTURE = new Identifier("penchant", "textures/screen/player_enchanter.png");
     private static final Identifier CHECK_BUTTON_TEXTURE = new Identifier("penchant", "textures/screen/check_button.png");
-    private final TexturedButtonWidget buttonWidget;
+    private final EnchantButtonWidget buttonWidget;
 
     public PlayerEnchanterScreen(PlayerEnchanterScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
-        this.buttonWidget = new TexturedButtonWidget(221, 71, 20, 18, 0, 0, 19,
+        this.buttonWidget = new EnchantButtonWidget(221, 71, 20, 18, 0, 0, 19,
                 CHECK_BUTTON_TEXTURE, button -> ClientPlayNetworking.send(Identifier.of(StaticPolicy.MOD_ID, StaticPolicy.PACKET_NAME), PacketByteBufs.empty()));
     }
 
@@ -61,5 +60,13 @@ public class PlayerEnchanterScreen extends HandledScreen<PlayerEnchanterScreenHa
         } else {
             this.textRenderer.drawWithShadow(matrices, text, 78, 65, RED);
         }
+    }
+
+    public int getBackgroundWidth() {
+        return backgroundWidth;
+    }
+
+    public int getBackgroundHeight() {
+        return backgroundHeight;
     }
 }

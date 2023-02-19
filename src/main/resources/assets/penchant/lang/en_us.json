@@ -11,6 +11,5 @@
   "penchant.no_more_enchantment_available": "no more enchantment is available.",
 
   "penchant.current_applied_enchantments": "[Player Enchantment] current applied enchantment list",
-  "penchant.enchantment_list_item": "- %s (level %s)",
-  "penchant.blank": ""
+  "penchant.enchantment_list_item": "- %s (level %s)"
 }

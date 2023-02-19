@@ -24,14 +24,8 @@ public class PlayerEnchanterScreenHandler extends ScreenHandler {
         super(PlayerEnchantMod.BOX_SCREEN_HANDLER, syncId);
         checkSize(inventory, 1);
         this.inventory = inventory;
-        //some inventories do custom logic when a player opens it.
         inventory.onOpen(playerInventory.player);
 
-        //This will place the slot in the correct locations for a 3x3 Grid. The slots exist on both server and client!
-        //This will not render the background of the slots however, this is the Screens job
-        int m;
-        int l;
-        //Our inventory
         this.addSlot(new Slot(inventory, 0, 62, 35) {
             @Override
             public boolean canInsert(ItemStack itemStack) {
@@ -39,6 +33,8 @@ public class PlayerEnchanterScreenHandler extends ScreenHandler {
             }
         });
 
+        int m;
+        int l;
         //The player inventory
         for (m = 0; m < 3; ++m) {
             for (l = 0; l < 9; ++l) {
