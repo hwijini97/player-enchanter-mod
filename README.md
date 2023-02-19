@@ -2,8 +2,8 @@
 
 ## Setup
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+클라이언트, 서버 모두 적용 필요해요. 궁금하신 점은 휘진#0956 디스코드 문의주세요.
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+맘대로 쓰십쇼..
