@@ -1,6 +1,9 @@
 package com.penchant.screen;
 
 import com.penchant.PlayerEnchantMod;
+import com.penchant.util.StaticPolicy;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -8,6 +11,8 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
+import net.minecraft.util.Identifier;
 
 public class PlayerEnchanterScreenHandler extends ScreenHandler {
     private final Inventory inventory;
@@ -26,7 +31,7 @@ public class PlayerEnchanterScreenHandler extends ScreenHandler {
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
 
-        this.addSlot(new Slot(inventory, 0, 62, 35) {
+        this.addSlot(new Slot(inventory, 0, 80, 35) {
             @Override
             public boolean canInsert(ItemStack itemStack) {
                 return itemStack.getTranslationKey().equals("item.penchant.tanzanite");
@@ -53,29 +58,18 @@ public class PlayerEnchanterScreenHandler extends ScreenHandler {
         return this.inventory.canPlayerUse(player);
     }
 
+    @Override
+    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+        super.onSlotClick(slotIndex, button, actionType, player);
+
+        if (slotIndex == 0 && slots.get(0).getStack().getItem().getTranslationKey().equals("item.penchant.tanzanite")) {
+            ClientPlayNetworking.send(Identifier.of(StaticPolicy.MOD_ID, StaticPolicy.PACKET_NAME), PacketByteBufs.empty());
+        }
+    }
+
     // Shift + Player Inv Slot
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {
-        ItemStack newStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(invSlot);
-        if (slot != null && slot.hasStack()) {
-            ItemStack originalStack = slot.getStack();
-            newStack = originalStack.copy();
-            if (invSlot < this.inventory.size()) {
-                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
-                return ItemStack.EMPTY;
-            }
-
-            if (originalStack.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
-            } else {
-                slot.markDirty();
-            }
-        }
-
-        return newStack;
+        return ItemStack.EMPTY;
     }
 }

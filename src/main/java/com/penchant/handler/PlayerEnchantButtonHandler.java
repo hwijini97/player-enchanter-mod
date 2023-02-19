@@ -33,6 +33,7 @@ public class PlayerEnchantButtonHandler {
             destroyItem(player);
             applyEnchantmentCost(player);
             applyRandomEnchantment(player);
+            player.closeHandledScreen();
         } else {
             player.sendMessage(Text.translatable("penchant.no_more_enchantment_available").formatted(Formatting.DARK_RED));
             PlayerEnchantMod.LOGGER.info("[PlayerAbilityApplyHandler] playerId: {}, playerName: {}, 더이상 인챈트 불가능함.", player.getId(), player.getName());
