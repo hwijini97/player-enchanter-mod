@@ -29,6 +29,10 @@ public class PlayerEnchantmentApplier {
         applyEnchantment(param, EntityAttributes.GENERIC_ARMOR_TOUGHNESS);
     }
 
+    public static void applyKnockBackResistance(PlayerEnchantmentApplyParam param) {
+        applyEnchantment(param, EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
+    }
+
     public static void applyReinforceLuck(PlayerEnchantmentApplyParam param) {
         applyEnchantment(param, EntityAttributes.GENERIC_LUCK);
     }
