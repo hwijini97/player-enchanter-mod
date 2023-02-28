@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public enum PlayerEnchantment {
-    WALK_FASTER("이동속도 강화", List.of(0.13f, 0.145f, 0.16f), PlayerEnchantmentApplier::applyWalkFaster),
+    WALK_FASTER("이동속도 증가", List.of(0.13f, 0.145f, 0.16f), PlayerEnchantmentApplier::applyWalkFaster),
     REINFORCE_DAMAGE("공격력 강화", List.of(4f, 6f, 8f), PlayerEnchantmentApplier::applyReinforceDamage),
     REINFORCE_ARMOR("방어력 강화", List.of(2f, 4f, 6f), PlayerEnchantmentApplier::applyReinforceArmor),
     REINFORCE_ARMOR_TOUGHNESS("방어 강도 강화", List.of(2f, 4f, 6f), PlayerEnchantmentApplier::applyReinforceArmorToughness),

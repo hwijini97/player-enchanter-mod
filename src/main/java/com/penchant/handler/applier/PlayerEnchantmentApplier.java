@@ -4,6 +4,8 @@ import com.penchant.PlayerEnchantMod;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -39,20 +41,35 @@ public class PlayerEnchantmentApplier {
         Objects.requireNonNull(param.getPlayer().getAttributeInstance(genericMaxHealth))
                 .setBaseValue(param.getEnchantment().getValues().get(param.getEnchantmentIndex()));
 
-        log(param);
+        handleAfterEnchanted(param);
     }
 
-    private static void log(PlayerEnchantmentApplyParam param) {
-        if (!param.doLog()) {
-            return;
+    private static void handleAfterEnchanted(PlayerEnchantmentApplyParam param) {
+        if (param.sendMessage()) {
+            sendMessage(param);
         }
 
-        PlayerEnchantMod.LOGGER.info("player: {}, {} 능력 {}단계가 추가되었습니다.",
-                param.getPlayer().getName(), param.getEnchantment(), param.getEnchantmentIndex() + 1);
+        if (!param.getPlayer().getWorld().isClient) {
+            playSound(param);
+        }
+    }
 
+    private static void sendMessage(PlayerEnchantmentApplyParam param) {
         for (ServerPlayerEntity player : PlayerEnchantMod.SERVER.getPlayerManager().getPlayerList()) {
             player.sendMessage(Text.translatable("penchant.player_enchanted",
-                    param.getPlayer().getName(), param.getEnchantment().getLabel(), param.getEnchantmentIndex() + 1).formatted(Formatting.DARK_PURPLE));
+                    param.getPlayer().getName().getString(), param.getEnchantment().getLabel(), param.getEnchantmentIndex() + 1).formatted(Formatting.DARK_PURPLE));
         }
+    }
+
+    private static void playSound(PlayerEnchantmentApplyParam param) {
+        param.getPlayer().getWorld().playSound(
+                null,
+                param.getPlayer().getX(),
+                param.getPlayer().getY(),
+                param.getPlayer().getZ(),
+                SoundEvents.BLOCK_BEACON_ACTIVATE,
+                SoundCategory.AMBIENT,
+                1.0f,
+                1.2f);
     }
 }

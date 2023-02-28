@@ -24,7 +24,7 @@ public class PlayerEnchantmentApplyParam {
         return enchantment;
     }
 
-    public boolean doLog() {
+    public boolean sendMessage() {
         return doLog;
     }
 
