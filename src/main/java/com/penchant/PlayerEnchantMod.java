@@ -88,9 +88,7 @@ public class PlayerEnchantMod implements ModInitializer {
 		player.sendMessage(Text.translatable("penchant.current_applied_enchantments").formatted(Formatting.AQUA));
 
 		for (Map.Entry<PlayerEnchantment, Integer> entry : playerEnchantmentInfo.entrySet()) {
-			for (int i = 0; i < entry.getValue(); i++) {
-				entry.getKey().getApplier().accept(new PlayerEnchantmentApplyParam(player, entry.getKey(), entry.getValue(), false));
-			}
+			entry.getKey().getApplier().accept(new PlayerEnchantmentApplyParam(player, entry.getKey(), entry.getValue(), false));
 			player.sendMessage(Text.translatable("penchant.enchantment_list_item", entry.getKey().getLabel(), entry.getValue() + 1).formatted(Formatting.AQUA));
 		}
 	}

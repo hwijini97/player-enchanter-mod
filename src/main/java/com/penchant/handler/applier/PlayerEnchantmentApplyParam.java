@@ -7,13 +7,13 @@ public class PlayerEnchantmentApplyParam {
     private ServerPlayerEntity player;
     private PlayerEnchantment enchantment;
     private int enchantmentIndex;
-    private boolean doLog;
+    private boolean sendMessage;
 
-    public PlayerEnchantmentApplyParam(ServerPlayerEntity player, PlayerEnchantment enchantment, int enchantmentIndex, boolean doLog) {
+    public PlayerEnchantmentApplyParam(ServerPlayerEntity player, PlayerEnchantment enchantment, int enchantmentIndex, boolean sendMessage) {
         this.player = player;
         this.enchantment = enchantment;
         this.enchantmentIndex = enchantmentIndex;
-        this.doLog = doLog;
+        this.sendMessage = sendMessage;
     }
 
     public ServerPlayerEntity getPlayer() {
@@ -25,7 +25,7 @@ public class PlayerEnchantmentApplyParam {
     }
 
     public boolean sendMessage() {
-        return doLog;
+        return sendMessage;
     }
 
     public int getEnchantmentIndex() {

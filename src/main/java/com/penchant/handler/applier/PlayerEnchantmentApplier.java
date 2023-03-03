@@ -41,9 +41,16 @@ public class PlayerEnchantmentApplier {
         applyEnchantment(param, EntityAttributes.GENERIC_MAX_HEALTH);
     }
 
-    private static void applyEnchantment(PlayerEnchantmentApplyParam param, EntityAttribute genericMaxHealth) {
-        Objects.requireNonNull(param.getPlayer().getAttributeInstance(genericMaxHealth))
+    private static void applyEnchantment(PlayerEnchantmentApplyParam param, EntityAttribute entityAttribute) {
+        double beforeValue = Objects.requireNonNull(param.getPlayer().getAttributeInstance(entityAttribute)).getBaseValue();
+
+        Objects.requireNonNull(param.getPlayer().getAttributeInstance(entityAttribute))
                 .setBaseValue(param.getEnchantment().getValues().get(param.getEnchantmentIndex()));
+
+        double afterValue = Objects.requireNonNull(param.getPlayer().getAttributeInstance(entityAttribute)).getBaseValue();
+
+        PlayerEnchantMod.LOGGER.info("[PlayerEnchantmentApplier] player: {}, enchantment: {}, entityAttribute: {}, before: {}, after: {}",
+                param.getPlayer().getName().getString(), param.getEnchantment(), entityAttribute, beforeValue, afterValue);
 
         handleAfterEnchanted(param);
     }
