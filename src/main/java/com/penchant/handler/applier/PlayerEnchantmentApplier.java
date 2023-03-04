@@ -50,7 +50,7 @@ public class PlayerEnchantmentApplier {
         double afterValue = Objects.requireNonNull(param.getPlayer().getAttributeInstance(entityAttribute)).getBaseValue();
 
         PlayerEnchantMod.LOGGER.info("[PlayerEnchantmentApplier] player: {}, enchantment: {}, entityAttribute: {}, before: {}, after: {}",
-                param.getPlayer().getName().getString(), param.getEnchantment(), entityAttribute, beforeValue, afterValue);
+                param.getPlayer().getName().getString(), param.getEnchantment(), entityAttribute.getTranslationKey(), beforeValue, afterValue);
 
         handleAfterEnchanted(param);
     }
